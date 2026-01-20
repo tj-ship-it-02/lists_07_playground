@@ -13,7 +13,11 @@ while True:
 
 
   elif ask_another_item == "no":
-    break
+    if (len(shopping_list) < 3):
+        print("shoping lists need to have atleast 3 items!")
+        continue
+    else:
+        break
 
   else:
     break
