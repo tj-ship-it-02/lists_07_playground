@@ -11,11 +11,14 @@ to_do_list = []
 
 def add_to_dos(to_do_list):
     user_to_do = input("What is most important for you right now? Add it here: ")
-    to_do_list.append(user_to_do)
-    print(to_do_list)
+    if user_to_do:
+        to_do_list.append(user_to_do)
+        print("Current to-do list:", to_do_list)
+    else:
+        print("You didn't enter anything. Task not added.")
 
 def remove_to_dos(to_do_list):
-    print(to_do_list)
+    print("Current to-do list:", to_do_list)
     user_remove = input("Which To Do would you like to remove? Tell me the index (number): ")
     if user_remove.isnumeric() and int(user_remove) >= 0 and int(user_remove) < len(to_do_list):
         to_do_list.pop(int(user_remove))
@@ -28,6 +31,7 @@ print("Welcome to your new to do app!")
 
 while True:
     user_navigation = input("What would you like to do now? Add an item, remove one or exit? ")
+    
     if user_navigation == "add":
         add_to_dos(to_do_list)
     elif user_navigation == "remove":
@@ -36,6 +40,7 @@ while True:
         print("Alrighty, see you soon! Still your to do's for today are:")
         print(to_do_list)
         break
-
+    else:
+        print("I didn't understand. Please type 'add', 'remove', or 'exit'.")
      
     
