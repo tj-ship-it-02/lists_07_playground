@@ -9,14 +9,18 @@
 
 shopping_list = ["cookies", "chocolate", "potatoes", "bananas", "flowers", "beans"]
 
-def remove_item():
+def remove_item(shopping_list):
     print(shopping_list)
     user_choice = input("What item from the shopping list would you like to remove? ")
-    shopping_list.remove(user_choice)
-    print(shopping_list)
+    if user_choice in shopping_list:
+        shopping_list.remove(user_choice)
+        print(shopping_list)
+    else:
+        print("The item you selected is not part of the list.")
+    
 
 while True:
-    remove_item()
+    remove_item(shopping_list)
     remove_another_item_question = input("Would you like to remove another item? ")
     if remove_another_item_question == "yes":
         continue
