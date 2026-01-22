@@ -46,7 +46,7 @@ def show_todo_list(todo_list):
         return
     
     for i, todo in enumerate(todo_list):
-        print(str(i + 1) + ".", todo)
+        print(f"{i + 1}. {todo}")
 
 
 while True:
