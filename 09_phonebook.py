@@ -9,6 +9,8 @@
 
 contacts = []
 
+print("Welcome to your contact book!")
+
 def add_contact(contacts):
     name = input("What's the name of the current you want to add? ")
     age = input("Age? ")
@@ -25,12 +27,12 @@ def add_contact(contacts):
     }
 
     contacts.append(new_contact)
-    print(f"You've successfullyl added {name} to your contacts!")
     show_contacts(contacts)
+    print(f"You've successfullyl added {name} to your contacts!\n")
     
 def show_contacts(contacts):
     for index, contact in enumerate(contacts):
-        print(f"{'=' * 30}\n")
+        print(f"\n{'=' * 30}\n")
         print(f" {index + 1}. 👋 Name: {contact['name']}")
         print(f"    👵 Age: {contact['age']}")
         print(f"    🌆 City: {contact['city']}")
@@ -47,24 +49,45 @@ def remove_contact(contacts):
         else:
             deleted_contact = contacts.pop(computer_index)
             show_contacts(contacts)
-            print(f"You have removed {deleted_contact['name']} from your contacts.")
+            print(f"You have removed {deleted_contact['name']} from your contacts.\n")
             return
     else:
         print("No text allowed. Only the index number of the contact can be removed.")
     
 
-# add_contact(contacts)
-# add_contact(contacts)
-# remove_contact(contacts)
-
 while True:
-    navigation = input("What do you want to do? 'add', 'remove' or 'exit'? ")
+    navigation = input("What do you want to do next? 'add', 'remove' or 'exit'? ")
+
     if navigation == "add":
         add_contact(contacts)
+
+        while True:
+            another_contact = input("Do you want to add another contact? 'yes' or 'no'? ")
+            if another_contact == "yes":
+                add_contact(contacts)
+                continue
+            elif another_contact == "no":
+                break
+            else:
+                print("I don't understand. yes or no?")
+                
     elif navigation == "remove":
         remove_contact(contacts)
+
+        while True:
+            another_removal = input("Do you want to delete another contact? 'yes' or 'no'? ")
+            if another_removal == "yes":
+                remove_contact(contacts)
+                continue
+            elif another_removal == "no":
+                break
+            else:
+                print("I don't understand. yes or no?")
+
     elif navigation == "exit":
         show_contacts(contacts)
+        print(f"👆 That's your latest phone book!\n")
         break
+
     else:
         print("Don't understand. Try again.")
