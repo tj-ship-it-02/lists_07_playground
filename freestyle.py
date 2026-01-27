@@ -4,6 +4,10 @@ print("Welcome to TikTakToe!")
 
 rows = [[" ", "0", "1", "2"], ["0", "_", "_", "_"], ["1", "_", "_", "_"], ["2", "_", "_", "_"]]
 
+player = "player"
+computer = "computer"
+tie = "tie"
+
 def show_field():
     for row in rows:
         print("\n")
@@ -50,9 +54,56 @@ def print_player_choice():
         show_field()
     
 
+def evaluate_winner():
+    # checken ob die drei horizontal win-cond eintreten bei x (Spieler)
+    if rows[1][1] == "x" and rows[1][2] == "x" and rows[1][3] == "x":
+        return player
+    elif rows[2][1] == "x" and rows[2][2] == "x" and rows[2][3] == "x":
+        return player
+    elif rows[3][1] == "x" and rows[3][2] == "x" and rows[3][3] == "x":
+        return player
+    # checken ob die drei horizontal win-cond eintreten bei o (computer)
+    elif rows[1][1] == "o" and rows[1][2] == "o" and rows[1][3] == "o":
+        return computer
+    elif rows[2][1] == "o" and rows[2][2] == "o" and rows[2][3] == "o":
+        return computer
+    elif rows[3][1] == "o" and rows[3][2] == "o" and rows[3][3] == "o":
+        return computer
+    # checken ob die drei vertical win-cond eintreten bei x (Spieler)
+    elif rows[1][1] == "x" and rows[2][1] == "x" and rows[3][1] == "x":
+        return player
+    elif rows[1][2] == "x" and rows[2][2] == "x" and rows[3][2] == "x":
+        return player
+    elif rows[1][3] == "x" and rows[2][3] == "x" and rows[3][3] == "x":
+        return player
+    # checken ob die drei vertical win-cond eintreten bei o (Computer)
+    elif rows[1][1] == "o" and rows[2][1] == "o" and rows[3][1] == "o":
+        return computer
+    elif rows[1][2] == "o" and rows[2][2] == "o" and rows[3][2] == "o":
+        return computer
+    elif rows[1][3] == "o" and rows[2][3] == "o" and rows[3][3] == "o":
+        return computer
+    # checken ob die zwei diagonal win-cond eintreten bei x (spieler)
+    elif rows[1][1] == "x" and rows[2][2] == "x" and rows[3][3] == "x":
+        return player
+    elif rows[1][3] == "x" and rows[2][2] == "x" and rows[3][1] == "x":
+        return player
+    # checken ob die zwei diagonal win-cond eintreten bei o (computer)
+    elif rows[1][1] == "o" and rows[2][2] == "o" and rows[3][3] == "o":
+        return computer
+    elif rows[1][3] == "o" and rows[2][2] == "o" and rows[3][1] == "o":
+        return computer
+    
+    has_empty_cell = any("_" in row for row in rows[1:])
+    if not has_empty_cell:
+        return tie
+    
+    return None
+
 while True:
     print_player_choice() 
-
+    winner = evaluate_winner()
+    print(f"\n\n and the winner is: {winner}")
         
 
 
