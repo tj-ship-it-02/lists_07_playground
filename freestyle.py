@@ -18,14 +18,14 @@ def get_validated_player_choice():
         print("\n")
         player_choice = input("What coordinate would you like to choose? Start with Y, then X coordinate: ")
 
-        if not player_choice.isnumeric():
+        if player_choice == "exit":
+            exit()
+        elif not player_choice.isnumeric():
             print("\nYour input needs to be a number, no text.")
             continue
         elif len(player_choice) != 2:
             print("\nYour coordindate needs to be 2 digit.")
             continue
-        elif player_choice == "exit":
-            exit()
         
         row, column = list(player_choice)
 
@@ -43,10 +43,16 @@ def get_validated_player_choice():
 
 def print_player_choice():
     y_coordinate, x_coordinate = get_validated_player_choice()
-    rows[y_coordinate][x_coordinate] = "x"
-    show_field()
+    if rows[y_coordinate][x_coordinate] == "x" or rows[y_coordinate][x_coordinate] == "o":
+        print("\n The cell is selected already. Choose another one.")
+    else:
+        rows[y_coordinate][x_coordinate] = "x"
+        show_field()
+    
 
-print_player_choice()      
+while True:
+    print_player_choice() 
+
         
 
 
